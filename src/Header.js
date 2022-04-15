@@ -9,8 +9,9 @@ function Header() {
 
   async function handleSignOut() {
     await signout();
-    navigate("/signup");
+    navigate("/signin");
   }
+
   return (
     <header>
       <h2>The Grid</h2>
@@ -22,7 +23,15 @@ function Header() {
         >
           Sign Out
         </button>
-      ) : null}
+      ) : (
+        <button
+          style={{ float: "right" }}
+          className="ui button secondary logout"
+          onClick={() => navigate("/signin")}
+        >
+          Sign in
+        </button>
+      )}
     </header>
   );
 }

@@ -15,4 +15,11 @@ function signout() {
   return firebase.auth().signOut();
 }
 
-export { signup, signout };
+function signin({ email, password }) {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(({ user }) => user);
+}
+
+export { signup, signout, signin };

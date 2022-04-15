@@ -1,23 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { signup } from "../firbase/auth";
+import { signin } from "../firbase/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-function Signup() {
+function Signin() {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    let newUser;
+    let user;
     setIsLoading(true);
     try {
-      newUser = await signup(data);
+      user = await signin(data);
       reset();
     } catch (error) {
       console.log(error);
     }
-    if (newUser) {
-      navigate("/profile/" + newUser.uid);
+    if (user) {
+      navigate("/profile/" + user.uid);
     } else setIsLoading(false);
   };
 
@@ -27,30 +27,6 @@ function Signup() {
       <div className="ui card login-card">
         <div className="content">
           <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
-            <div className="two fields">
-              <div className="field">
-                <label>
-                  First Name
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    {...register("firstName")}
-                  />
-                </label>
-              </div>
-              <div className="field">
-                <label>
-                  Last Name
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    {...register("lastName")}
-                  />
-                </label>
-              </div>
-            </div>
             <div className="field">
               <label>
                 Email
@@ -74,10 +50,10 @@ function Signup() {
               </label>
             </div>
             <button className="ui primary button login" type="submit">
-              Sign Up
+              Sign In
             </button>
             <div>
-              <Link to="/signin">already has an account? Signin...</Link>
+              <Link to="/signup">don't have an account? Signup...</Link>
             </div>
           </form>
         </div>
@@ -86,4 +62,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;
