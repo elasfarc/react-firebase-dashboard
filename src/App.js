@@ -16,7 +16,7 @@ function App() {
           <div className="ui grid container">
             <Routes>
               <Route exact path="/signup" element={<Signup />} />
-              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/profile/:id" element={<Profile />} />
             </Routes>
           </div>
         </div>

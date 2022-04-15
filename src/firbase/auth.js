@@ -6,7 +6,9 @@ async function signup({ email, password, firstName, lastName }) {
   const resp = await firebase
     .auth()
     .createUserWithEmailAndPassword(email, password);
-  await resp.user.updateProfile({ displayName: `${firstName} ${lastName}` });
+  const user = resp.user;
+  await user.updateProfile({ displayName: `${firstName} ${lastName}` });
+  return user;
 }
 
 export default signup;

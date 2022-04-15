@@ -1,20 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import signup from "../firbase/auth";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = React.useState(false);
-
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
+    let newUser;
     setIsLoading(true);
     try {
-      await signup(data);
+      newUser = await signup(data);
       reset();
     } catch (error) {
       console.log(error);
     }
-    setIsLoading(false);
+    if (newUser) {
+      navigate("/profile/" + newUser.uid);
+    } else setIsLoading(false);
   };
 
   const formClass = isLoading ? "ui form loading" : "ui form";
