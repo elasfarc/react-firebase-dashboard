@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./firbase/userProvider";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
+import ProfileRedirect from "./router/ProfileRedirect";
 
 function App() {
   return (
@@ -16,9 +17,17 @@ function App() {
         <div className="app">
           <div className="ui grid container">
             <Routes>
-              <Route exact path="/signup" element={<Signup />} />
+              <Route
+                exact
+                path="/signup"
+                element={<ProfileRedirect component={Signup} />}
+              />
               <Route exact path="/profile/:id" element={<Profile />} />
-              <Route exact path="/signin" element={<Signin />} />
+              <Route
+                exact
+                path="/signin"
+                element={<ProfileRedirect component={Signin} />}
+              />
             </Routes>
           </div>
         </div>
