@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import signup from "../firbase/auth";
+import { signup } from "../firbase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
