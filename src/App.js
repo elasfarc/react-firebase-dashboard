@@ -8,6 +8,7 @@ import { UserProvider } from "./firbase/userProvider";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import ProfileRedirect from "./router/ProfileRedirect";
+import PrivateRoute from "./router/PrivateRoute";
 
 function App() {
   return (
@@ -22,7 +23,11 @@ function App() {
                 path="/signup"
                 element={<ProfileRedirect component={Signup} />}
               />
-              <Route exact path="/profile/:id" element={<Profile />} />
+              <Route
+                exact
+                path="/profile/:id"
+                element={<PrivateRoute component={Profile} />}
+              />
               <Route
                 exact
                 path="/signin"
