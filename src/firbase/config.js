@@ -1,5 +1,6 @@
 // import { initializeApp } from "firebase/app";
 import firebase from "firebase/compat/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -8,8 +9,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
-const app = firebase.initializeApp(firebaseConfig);
+export const app = firebase.initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 console.log(app.options);
-
-export default app;
